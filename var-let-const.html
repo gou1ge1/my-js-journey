@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript var、let、const 区别</title>
+
+</head>
+
+<body>
+  <div>
+    第一个区别是作用域不同，var是全局作用域（挂在windows对象上），let和const是块级作用域，在{}内有效
+  </div>
+  <div>
+    第二个区别是var存在变量提升，引擎在编译var声明的变量时会给变量初始化赋值undefined，所以在声明之前访问不会报错，
+    而let和const会被标记成uninitialized，在声明之前访问会报错。
+  </div>
+  <div>
+    第三个区别是var可以重复声明，而let和const不能在同一个作用区域重复声明。
+  </div>
+  <div>
+    第四个区别是let声明的变量可以重新被赋值，const不可以，但是如果const声明的是一个对象或数组，那它寸的就是一个内存中的地址值，那么可以修改其中的属性。
+  </div>
+  <script>
+   
+   console.log(window.a) 
+ 
+   test()
+   var a = 1
+   function test() {
+    let b = 2
+    const c = {
+      c : 3
+    }
+     b = 4
+     c.c = 5
+    console.log(b)
+    console.log(c)
+   } 
+   console.log(b)
+  </script>
+
+</body>
+
+</html>
