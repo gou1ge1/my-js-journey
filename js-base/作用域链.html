@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域链</title>
+
+</head>
+<body>
+    <div>
+        作用域链就是js找变量的规则，从当前作用域开始往外层找，直到全局作用域。
+    </div>
+    <script>
+        for (var i = 0; i < 3; i++) {
+            setTimeout(() => console.log(i))  
+        }
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => console.log(i))
+        }
+
+        //每次循环都创建一个独立作用域，settimeout回调时能捕获到对应的值
+        for (var i=0;i<3;i++)(
+            (function(j){
+                setTimeout(() => console.log(j))
+            })(i)
+        )
+
+        // var a = 1
+        // function b() {
+        //     console.log(a)
+        // }
+        // function c() {
+        //     var a = 2
+        //     b()
+        // }
+        // c()
+    </script>
+</body>
+</html>

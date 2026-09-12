@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包</title>
+</head>
+
+<body>
+    <div>闭包本质上是对函数作用域链机制的应用，闭包由函数和该函数能访问的外部变量构成，即使外层函数已经执行完，这个内部函数依然保留着对那些变量的引用</div>
+   <div>
+    <button id="button">
+        点击我
+    </button>
+   </div>
+   <script>
+      const button = document.getElementById('button')
+
+
+      function debounce(fn, delay) {
+        let timer = null
+        return function (...args) {
+          console.log('args', args)
+          clearTimeout(timer)
+          timer = setTimeout(() => {
+            fn.apply(this, args)
+            console.log('this',this)
+          }, delay)
+        }
+      }
+
+      const fn = debounce(() => {
+        console.log('debounce')
+      }, 5000)
+
+      button.addEventListener('click', fn)
+
+      console.log('fn',fn)
+    </script>
+</body>
+
+</html>
